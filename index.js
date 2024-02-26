@@ -5,6 +5,10 @@ let emptyMessages = document.querySelectorAll('.empty-field');
 let firstName, lastName, email, password;
 let field;
 
+let nameRegex = /^[a-z]+$/i;
+let mailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+let pwdRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
 for (let errorMessage of errorMessages) {
     errorMessage.classList.add("d-none");
 }
@@ -37,4 +41,40 @@ formData.addEventListener("keyup", (event) => {
 submitButton.addEventListener("click", (event) => {
     event.preventDefault();
     console.log(firstName, lastName, email, password);
+    if (firstName){
+        if (!nameRegex.test(firstName)) {
+            console.log('Name must contain only alphabets.');
+        } else {
+            console.log('Good to go');
+        }
+    } else {
+        console.log('Please fill this field');
+    }
+    if (lastName){
+        if (!nameRegex.test(lastName)) {
+            console.log('Name must contain only alphabets.');
+        } else {
+            console.log('Good to go');
+        }
+    } else {
+        console.log('Please fill this field');
+    }
+    if (email){
+        if (!mailRegex.test(email)) {
+            console.log('Invalid Email Id');
+        } else {
+            console.log('Good to go');
+        }
+    } else {
+        console.log('Please fill this field');
+    }
+    if (password){
+        if (!pwdRegex.test(password)) {
+            console.log('Invalid Password');
+        } else {
+            console.log('Good to go');
+        }
+    } else {
+        console.log('Please fill in the password!');
+    }
 })
