@@ -10,6 +10,7 @@ let mailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 let pwdRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
 for (let errorMessage of errorMessages) {
+    console.log(errorMessage);
     errorMessage.classList.add("d-none");
 }
 for (let emptyMessage of emptyMessages) {
@@ -42,39 +43,45 @@ submitButton.addEventListener("click", (event) => {
     event.preventDefault();
     console.log(firstName, lastName, email, password);
     if (firstName){
+        emptyMessages[0].classList.add("d-none");
         if (!nameRegex.test(firstName)) {
-            console.log('Name must contain only alphabets.');
+            errorMessages[0].classList.remove('d-none');
         } else {
-            console.log('Good to go');
+            errorMessages[0].classList.add('d-none');
         }
     } else {
+        emptyMessages[0].classList.remove("d-none");
         console.log('Please fill this field');
     }
     if (lastName){
+        emptyMessages[1].classList.add("d-none");
         if (!nameRegex.test(lastName)) {
-            console.log('Name must contain only alphabets.');
+            errorMessages[1].classList.remove('d-none');
         } else {
-            console.log('Good to go');
+            errorMessages[1].classList.add('d-none');
         }
     } else {
-        console.log('Please fill this field');
+        emptyMessages[1].classList.remove("d-none");
     }
     if (email){
+        emptyMessages[2].classList.add("d-none");
         if (!mailRegex.test(email)) {
-            console.log('Invalid Email Id');
+            errorMessages[2].classList.remove('d-none');
         } else {
-            console.log('Good to go');
+            errorMessages[2].classList.add('d-none');
         }
     } else {
-        console.log('Please fill this field');
+        emptyMessages[2].classList.remove("d-none");
     }
     if (password){
+        emptyMessages[3].classList.add("d-none");
         if (!pwdRegex.test(password)) {
+            errorMessages[3].classList.remove('d-none');
             console.log('Invalid Password');
         } else {
-            console.log('Good to go');
+            errorMessages[3].classList.add('d-none');
         }
     } else {
-        console.log('Please fill in the password!');
+        emptyMessages[3].classList.remove("d-none");
     }
 })
